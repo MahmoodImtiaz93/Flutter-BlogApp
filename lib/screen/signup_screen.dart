@@ -4,6 +4,7 @@ import 'package:blogapp/components/button.dart';
 import 'package:blogapp/components/custome_textfield.dart';
 import 'package:blogapp/model/user_model.dart';
 import 'package:blogapp/provider/userdataprovider.dart';
+import 'package:blogapp/utils/route_name.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -161,7 +162,9 @@ class _SignUpState extends State<SignUp> {
                 height: 30.0,
               ),
               InkWell(
-                onTap: () {},
+                onTap: () {
+                  Navigator.pushNamed(context, RouteNames.loginscreen);
+                },
                 child: const Text.rich(TextSpan(children: [
                   TextSpan(
                       text: "Already have an account?  ",
