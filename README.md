@@ -1,10 +1,10 @@
-# blogapp
+# Blog App (Social Media)
 
-A new Flutter project.
+ 
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+A black and white themed social media app where users can sign up, log in, and post photos with text and can edit them. They can receive likes and comments on their posts. The app also allows users to send friend requests and cancel friend requests.
 
 A few resources to get you started if this is your first Flutter project:
 
