@@ -2,15 +2,18 @@
 
  
 
-## Getting Started
+## About 
 
 A black and white themed social media app where users can sign up, log in, and post photos with text and can edit them. They can receive likes and comments on their posts. The app also allows users to send friend requests and cancel friend requests.
 
-A few resources to get you started if this is your first Flutter project:
+ Home Screen               |  User Profile 
+:-------------------------:|:-------------------------:
+![](Images/home.JPG)       |  ![](Images/profile.JPG)
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+ Friends Feed              |  Add Comments
+:-------------------------:|:-------------------------:
+![](Images/friends_feed.JPG)  | ![](Images/add_comments.JPG)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+ Sending Friend Requests   |  Pending Friend Request       
+:-------------------------:|:-------------------------:
+![](Images/sending_friend_request)| ![](Images/pending_friend_requests.JPG)
