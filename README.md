@@ -16,4 +16,4 @@ A black and white themed social media app where users can sign up, log in, and p
 
  Sending Friend Requests   |  Pending Friend Request       
 :-------------------------:|:-------------------------:
-![](Images/sending_friend_request)| ![](Images/pending_friend_requests.JPG)
+![](Images/sending_friend_request.JPG)| ![](Images/pending_friend_requests.JPG)
