@@ -3,10 +3,13 @@ import 'dart:developer';
 import 'package:blogapp/components/button.dart';
 import 'package:blogapp/components/custome_textfield.dart';
 import 'package:blogapp/model/user_model.dart';
-import 'package:blogapp/provider/userdataprovider.dart';
+import 'package:blogapp/provider/auth_provider.dart';
+
 import 'package:blogapp/utils/route_name.dart';
+import 'package:email_auth/email_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+//import 'package:blogapp/model/user.dart';
 
 class SignUp extends StatefulWidget {
   SignUp({Key? key}) : super(key: key);
@@ -27,13 +30,26 @@ class _SignUpState extends State<SignUp> {
   ValueNotifier<bool> _obsecureConfirmPassword = ValueNotifier<bool>(true);
 
   void registerUser() {
+ 
     User registerUser = User(
         name: _nameController.text,
         email: _emailController.text,
         password: _passwordController.text,
+    
         passwordconfirmation: _confirmpasswordController.text);
-    Provider.of<UserDataProvider>(context, listen: false)
-        .register(registerUser);
+    Provider.of<AuthProvider>(context, listen: false)
+        .signup(registerUser, context);
+  }
+
+  EmailAuth emailAuth = EmailAuth(sessionName: 'MyApp');
+
+  Future<void> requestOTP(String email) async {
+    var response = await emailAuth.sendOtp(recipientMail: email);
+    if (response) {
+      print('OTP sent successfully');
+    } else {
+      print('Failed to send OTP');
+    }
   }
 
   @override
@@ -75,9 +91,16 @@ class _SignUpState extends State<SignUp> {
                       obscureText: _obsecurePassword.value,
                       cursorColor: Colors.white,
                       style: TextStyle(color: Colors.white),
-                      validator: (value) => value!.length < 6
-                          ? "Password Must be 6 charecter"
-                          : null,
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return 'Please enter your password';
+                        } else if (value.length < 6) {
+                          return 'Password must be at least 6 characters long';
+                        }
+                        return null;
+                      },
+                      onSaved: (value) =>
+                          _passwordController = value as TextEditingController,
                       decoration: InputDecoration(
                           hintText: 'Password',
                           hintStyle:
@@ -116,9 +139,13 @@ class _SignUpState extends State<SignUp> {
                       obscureText: _obsecureConfirmPassword.value,
                       cursorColor: Colors.white,
                       style: TextStyle(color: Colors.white),
-                      validator: (value) => value != _passwordController
-                          ? "Password didn't match"
-                          : null,
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return 'Please confirm your password';
+                        } else {
+                          return null;
+                        }
+                      },
                       decoration: InputDecoration(
                           hintText: 'Confirm Password',
                           hintStyle:
@@ -155,6 +182,7 @@ class _SignUpState extends State<SignUp> {
                 onPress: () {
                   if (_singInFormKey.currentState!.validate()) {
                     registerUser();
+                    requestOTP(_emailController.text);
                   }
                 },
               ),

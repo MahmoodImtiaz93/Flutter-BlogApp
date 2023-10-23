@@ -29,7 +29,7 @@ class CustomTextField extends StatelessWidget {
           borderSide: BorderSide(color: Colors.white),
         ),
         focusedBorder: OutlineInputBorder(
-          borderSide: BorderSide(width: 3, color: Colors.white),
+          borderSide: BorderSide(width: 3, color: Color(0x29fd53)),
         ),
       ),
       validator: (val) {
